@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAiming : MonoBehaviour
 {
@@ -46,8 +47,8 @@ public class PlayerAiming : MonoBehaviour
 		DecayPunchAngle();
 
 		// Input
-		float xMovement = Input.GetAxisRaw("Mouse X") * horizontalSensitivity * sensitivityMultiplier;
-		float yMovement = -Input.GetAxisRaw("Mouse Y") * verticalSensitivity  * sensitivityMultiplier;
+		float xMovement = Mouse.current.delta.x.ReadValue() * horizontalSensitivity * sensitivityMultiplier;
+		float yMovement = -Mouse.current.delta.y.ReadValue() * verticalSensitivity  * sensitivityMultiplier;
 
 		// Calculate real rotation from input
 		realRotation   = new Vector3(Mathf.Clamp(realRotation.x + yMovement, minYRotation, maxYRotation), realRotation.y + xMovement, realRotation.z);

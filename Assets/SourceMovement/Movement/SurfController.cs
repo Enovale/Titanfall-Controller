@@ -10,6 +10,7 @@ namespace Fragsurf.Movement
         [HideInInspector] public Transform playerTransform;
         private ISurfControllable _surfer;
         private MovementConfig _config;
+        private PlayerInput _input;
         private float _deltaTime;
 
         public bool jumping = false;
@@ -265,7 +266,8 @@ namespace Fragsurf.Movement
                 _surfer.moveData.velocity.y -= _config.underwaterGravity * _deltaTime;
 
             // Swimming upwards
-            if (Input.GetButton("Jump"))
+            //if (Input.GetButton("Jump"))
+            if (jumping)
                 _surfer.moveData.velocity.y += _config.swimUpSpeed * _deltaTime;
 
             float fric = _config.underwaterFriction;
@@ -315,14 +317,15 @@ namespace Fragsurf.Movement
 
             // Apply the Y-movement from slopes
             _surfer.moveData.velocity.y = Mathf.Min(Mathf.Max(0f, yVelocityNew) + yVelStored, speed);
-
+            
             // Jumping out of water
             bool movingForwards = playerTransform.InverseTransformVector(_surfer.moveData.velocity).z > 0f;
             Trace waterJumpTrace = TraceBounds(playerTransform.position,
                 playerTransform.position + playerTransform.forward * 0.1f, SurfPhysics.groundLayerMask);
             if (waterJumpTrace.hitCollider != null &&
                 Vector3.Angle(Vector3.up, waterJumpTrace.planeNormal) >= _config.slopeLimit &&
-                Input.GetButton("Jump") && !_surfer.moveData.cameraUnderwater && movingForwards)
+                //Input.GetButton("Jump") && !_surfer.moveData.cameraUnderwater && movingForwards)
+                jumping && !_surfer.moveData.cameraUnderwater && movingForwards)
                 _surfer.moveData.velocity.y = Mathf.Max(_surfer.moveData.velocity.y, _config.jumpForce);
         }
 

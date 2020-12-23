@@ -6,6 +6,24 @@
     <e p="C:\Users\elija\Documents\UnityProjects\Titanfall Controller" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Input" t="Include">
+          <e p="PlayerInput.cs" t="Include" />
+        </e>
+        <e p="Samples" t="Include">
+          <e p="Input System" t="Include">
+            <e p="1.0.1" t="Include">
+              <e p="Gamepad Mouse Cursor" t="Include">
+                <e p="Unity.InputSystem.VirtualMouseInput.asmdef" t="Include" />
+                <e p="VirtualMouseInput.cs" t="Include" />
+              </e>
+              <e p="Input Recorder" t="Include">
+                <e p="InputRecorder.cs" t="Include" />
+                <e p="InputRecorderInspector.cs" t="Include" />
+                <e p="Unity.InputSystem.Recorder.asmdef" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="SourceMovement" t="Include">
           <e p="CameraWaterCheck.cs" t="Include" />
           <e p="Extensions" t="Include">
@@ -34,6 +52,8 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\Bin" t="ExcludeRecursive" />
       <e p="Titanfall Controller.sln" t="IncludeFlat" />
+      <e p="Unity.InputSystem.Recorder.csproj" t="IncludeRecursive" />
+      <e p="Unity.InputSystem.VirtualMouseInput.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>

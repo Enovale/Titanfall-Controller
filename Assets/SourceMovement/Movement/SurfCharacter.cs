@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 namespace Fragsurf.Movement
@@ -66,6 +67,7 @@ namespace Fragsurf.Movement
 
         private MoveData _moveData = new MoveData();
         private SurfController _controller = new SurfController();
+        private PlayerInput _input;
 
         private Rigidbody rb;
 
@@ -141,6 +143,29 @@ namespace Fragsurf.Movement
                 _controller.camera = viewTransform;
                 _controller.cameraYPos = viewTransform.localPosition.y;
             }
+
+            _input = new PlayerInput();
+            _input.Player.Move.performed += ctx =>
+            {
+                var vector = ctx.ReadValue<Vector2>();
+                _moveData.verticalAxis = vector.y;
+                _moveData.horizontalAxis = vector.x;
+            };
+            _input.Player.Move.canceled += ctx =>
+            {
+                _moveData.verticalAxis = 0;
+                _moveData.horizontalAxis = 0;
+            };
+            _input.Player.Crouch.performed += ctx => _moveData.crouching = true;
+            _input.Player.Crouch.canceled += ctx => _moveData.crouching = false;
+            
+            _input.Player.Sprint.performed += ctx => _moveData.sprinting = true;
+            _input.Player.Sprint.canceled += ctx => _moveData.sprinting = false;
+            
+            _input.Player.Jump.performed += ctx => _moveData.wishJump = true;
+            _input.Player.Jump.canceled += ctx => _moveData.wishJump = false;
+
+            _input.Enable();
         }
 
         private void Start()
@@ -292,7 +317,7 @@ namespace Fragsurf.Movement
 
         private void UpdateTestBinds()
         {
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (Keyboard.current.backspaceKey.wasPressedThisFrame)
                 ResetPosition();
         }
 
@@ -304,22 +329,10 @@ namespace Fragsurf.Movement
 
         private void UpdateMoveData()
         {
-            _moveData.verticalAxis = Input.GetAxisRaw("Vertical");
-            _moveData.horizontalAxis = Input.GetAxisRaw("Horizontal");
-
-            _moveData.sprinting = Input.GetButton("Sprint");
-
-            if (Input.GetButtonDown("Crouch"))
-                _moveData.crouching = true;
-
-            if (!Input.GetButton("Crouch"))
-                _moveData.crouching = false;
-
             bool moveLeft = _moveData.horizontalAxis < 0f;
             bool moveRight = _moveData.horizontalAxis > 0f;
             bool moveFwd = _moveData.verticalAxis > 0f;
             bool moveBack = _moveData.verticalAxis < 0f;
-            bool jump = Input.GetButton("Jump");
 
             if (!moveLeft && !moveRight)
                 _moveData.sideMove = 0f;
@@ -334,12 +347,6 @@ namespace Fragsurf.Movement
                 _moveData.forwardMove = moveConfig.acceleration;
             else if (moveBack)
                 _moveData.forwardMove = -moveConfig.acceleration;
-
-            if (Input.GetButtonDown("Jump"))
-                _moveData.wishJump = true;
-
-            if (!Input.GetButton("Jump"))
-                _moveData.wishJump = false;
 
             _moveData.viewAngles = _angles;
         }
