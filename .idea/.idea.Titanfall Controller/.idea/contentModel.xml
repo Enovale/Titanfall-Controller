@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\elija\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\elija\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Titanfall Controller.-575996791.00" t="ExcludeRecursive" />
+    <e p="C:\Users\elija\Documents\UnityProjects\Titanfall Controller" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="SourceMovement" t="Include">
+          <e p="CameraWaterCheck.cs" t="Include" />
+          <e p="Extensions" t="Include">
+            <e p="IntExtensions.cs" t="Include" />
+            <e p="VectorExtensions.cs" t="Include" />
+          </e>
+          <e p="Ladder.cs" t="Include" />
+          <e p="Movement" t="Include">
+            <e p="InputButtons.cs" t="Include" />
+            <e p="ISurfControllable.cs" t="Include" />
+            <e p="MoveData.cs" t="Include" />
+            <e p="MovementConfig.cs" t="Include" />
+            <e p="SurfCharacter.cs" t="Include" />
+            <e p="SurfController.cs" t="Include" />
+            <e p="SurfPhysics.cs" t="Include" />
+          </e>
+          <e p="PlayerAiming.cs" t="Include" />
+          <e p="TraceUtil" t="Include">
+            <e p="Trace.cs" t="Include" />
+            <e p="Tracer.cs" t="Include" />
+          </e>
+          <e p="Water.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+      <e p="Titanfall Controller.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
