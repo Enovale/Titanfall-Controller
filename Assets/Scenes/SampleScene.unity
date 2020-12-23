@@ -554,7 +554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467285084242854813, guid: a840589249729984398df665ca6e2508, type: 3}
       propertyPath: m_Name
-      value: Example player prefab
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467285084242854815, guid: a840589249729984398df665ca6e2508, type: 3}
+      propertyPath: crouchingSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5467285084242854815, guid: a840589249729984398df665ca6e2508, type: 3}
       propertyPath: slidingEnabled
